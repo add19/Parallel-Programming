@@ -18,8 +18,9 @@ int main(){
 			c[i][j] = 0;
 		}
 	}
-	
-	#pragma omp parallel for private(m, j)
+    double start, stop;
+    start = omp_get_wtime();
+	 #pragma omp parallel for private(m, j) num_threads(4) 
 		
 		for(i=0; i<n; i++){
 			for(j=0; j<n; j++){
@@ -30,6 +31,9 @@ int main(){
 				printf("%d ", c[i][j]);		
 			}
 		}	
+    stop = omp_get_wtime();
+    printf("Time elapsed: %f", stop - start);
+
 	
 	return 0;
 }
